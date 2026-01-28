@@ -10,7 +10,6 @@ export default function MainSection() {
   const [index, setIndex] = useState(0);
   const { data: upcomingEvents = [], isLoading } = useUpcomingEvents();
 
-  // API 데이터 → 메인 카드용 데이터로 매핑
   const apiCards: MainCardProps[] = upcomingEvents.map((event) => ({
     dday: String(event.dday),
     title: event.name,
@@ -18,7 +17,6 @@ export default function MainSection() {
     image: event.thumbnailUrl || DummyImg,
   }));
 
-  // API 데이터가 있으면 그것을 사용, 없으면 기존 mockCards 사용
   const cards: MainCardProps[] = apiCards.length > 0 ? apiCards : mockCards;
 
   useEffect(() => {
